@@ -29,6 +29,20 @@ function sauvegarderTaches(tasks) {
 
 let tasks = chargerTaches();
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "API de gestion de taches - operationnelle",
+    version: "1.0.0",
+    routes: [
+      { methode: "GET",    url: "/",          description: "Informations sur l'API" },
+      { methode: "GET",    url: "/tasks",     description: "Recuperer toutes les taches" },
+      { methode: "POST",   url: "/tasks",     description: "Creer une nouvelle tache" },
+      { methode: "PUT",    url: "/tasks/:id", description: "Modifier une tache existante" },
+      { methode: "DELETE", url: "/tasks/:id", description: "Supprimer une tache" },
+    ],
+  });
+});
+
 app.get("/tasks", (req, res) => {
   res.json(tasks);
 });
@@ -80,5 +94,12 @@ app.delete("/tasks/:id", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Serveur demarre sur le port ${PORT}`);
+  console.log("================================");
+  console.log("  API Tasks - En ligne !");
+  console.log(`  http://localhost:${PORT}`);
+  console.log("================================");
+  console.log(`  GET  /         -> infos API`);
+  console.log(`  GET  /tasks    -> liste des taches`);
+  console.log(`  POST /tasks    -> creer une tache`);
+  console.log("================================");
 });
