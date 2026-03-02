@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 20
       - run: npm install
-      - run: npm run build
+      - run: npm run start
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -36,5 +36,5 @@ jobs:
             git pull origin main
             npm install
             npm run strat
-            pm2 restart front
+            pm2 restart api
           "
