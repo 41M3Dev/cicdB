@@ -15,6 +15,7 @@ jobs:
         with:
           node-version: 20
       - run: npm install
+        working-directory: back
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -33,6 +34,7 @@ jobs:
             set -e
             cd cicdB/
             git pull origin main
+            cd back/
             npm install
             pm2 restart api
           "
